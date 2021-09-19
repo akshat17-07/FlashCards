@@ -1,0 +1,72 @@
+WindowManager:
+    MainWindow:
+    AddWindow:
+    ReviewWindow:
+
+<MainWindow>:
+    name:"main"
+
+    GridLayout:
+
+        cols:1
+
+        Button:
+
+            text: "Review"
+            on_release:
+                app.root.current="Review"
+                root.manager.transition.direction = "left"
+
+        Button:
+            text: "Add New"
+            on_release:
+                app.root.current="Add"
+                root.manager.transition.direction = "left"
+
+
+
+<ReviewWindow>:
+
+    name:"Review"
+
+
+    Button
+        text:"Go Back"
+        on_release:
+            app.root.current="main"
+            root.manager.transition.direction = "right"
+
+<AddWindow>:
+
+    name:"Add"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+
+            cols: 2
+            Label:
+                text: "Question"
+
+            TextInput:
+                id: question
+
+            Label:
+                text: "Answer"
+
+            TextInput:
+                id: answer
+
+        GridLayout:
+            cols: 1
+            Button:
+                text:"Submit"
+                on_release:
+                    app.root.current="Add"
+
+            Button:
+                text:"Go Back"
+                on_release:
+                    app.root.current="main"
+                    root.manager.transition.direction = "right"
