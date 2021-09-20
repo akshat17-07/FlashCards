@@ -1,6 +1,7 @@
 WindowManager:
     MainWindow:
     AddWindow:
+    SelectWindow:
     ReviewWindow:
 
 <MainWindow>:
@@ -14,7 +15,7 @@ WindowManager:
 
             text: "Review"
             on_release:
-                app.root.current="Review"
+                app.root.current="Select"
                 root.manager.transition.direction = "left"
 
         Button:
@@ -24,17 +25,48 @@ WindowManager:
                 root.manager.transition.direction = "left"
 
 
-
 <ReviewWindow>:
 
     name:"Review"
 
-
     Button
         text:"Go Back"
         on_release:
-            app.root.current="main"
+            app.root.current="Select"
             root.manager.transition.direction = "right"
+
+
+
+
+<SelectWindow>:
+
+    name:"Select"
+    subject: subject
+
+    GridLayout:
+
+        cols:1
+
+        Label:
+            text: "Subject"
+
+        TextInput:
+            id: subject
+
+        GridLayout:
+            cols: 2
+
+            Button:
+                text:"Go Back"
+                on_release:
+                    app.root.current="main"
+                    root.manager.transition.direction = "right"
+
+            Button:
+                text:"Review"
+                on_release:
+                    app.root.current="Select" if not root.btn() else "Review"
+                    root.manager.transition.direction = "left"
 
 <AddWindow>:
 
@@ -68,12 +100,12 @@ WindowManager:
             id: answer
 
         Button:
-            text:"Submit"
-            on_release:
-                root.btn()
-
-        Button:
             text:"Go Back"
             on_release:
                 app.root.current="main"
                 root.manager.transition.direction = "right"
+
+        Button:
+            text:"Submit"
+            on_release:
+                root.btn()

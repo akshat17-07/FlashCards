@@ -11,6 +11,14 @@ from csv_module import csv_reader, csv_writer
 class MainWindow(Screen):
     pass
 
+class SelectWindow(Screen):
+    subject = ObjectProperty(None)
+
+    def btn(self):
+        if csv_reader(self.subject.text):
+            return True
+        return False
+
 class ReviewWindow(Screen):
     pass
 
@@ -24,12 +32,14 @@ class AddWindow(Screen):
         subject = self.subject.text
         subject = subject.upper()
 
-        data = [self.question.text, self.answer.text]
 
-        csv_writer(subject, data)
+        if subject != "":
+            data = [self.question.text, self.answer.text]
 
-        self.question.text = ""
-        self.answer.text = ""
+            csv_writer(subject, data)
+
+            self.question.text = ""
+            self.answer.text = ""
 
 
 class WindowManager(ScreenManager):
