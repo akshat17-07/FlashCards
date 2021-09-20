@@ -13,7 +13,6 @@ def csv_reader(String_filename):
         for row in csv_reader:
             if row != []:
                 file_list.append(row)
-                print(row)
         return file_list
 
 def csv_writer(String_filename, data):
