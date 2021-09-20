@@ -4,6 +4,9 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.lang import Builder
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
+from csv_module import csv_reader, csv_writer
+
 
 class MainWindow(Screen):
     pass
@@ -14,10 +17,16 @@ class ReviewWindow(Screen):
 class AddWindow(Screen):
     question = ObjectProperty(None)
     answer = ObjectProperty(None)
+    subject = ObjectProperty(None)
 
     def btn(self):
-        print("Name", self.question.text)
-        print("Email", self.answer.text)
+
+        subject = self.subject.text
+        subject = subject.upper()
+
+        data = [self.question.text, self.answer.text]
+
+        csv_writer(subject, data)
 
         self.question.text = ""
         self.answer.text = ""
