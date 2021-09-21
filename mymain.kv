@@ -4,6 +4,7 @@ WindowManager:
     SelectWindow:
     ReviewWindow:
 
+
 <MainWindow>:
     name:"main"
 
@@ -28,14 +29,32 @@ WindowManager:
 <ReviewWindow>:
 
     name:"Review"
+    question:question
+    answer:answer
 
-    Button
-        text:"Go Back"
-        on_release:
-            app.root.current="Select"
-            root.manager.transition.direction = "right"
+    GridLayout:
+        cols:1
+        Label:
+            id:question
+            text:"Press Random"
 
+        Label:
+            id:answer
+            text:""
 
+        GridLayout:
+            cols:2
+
+            Button:
+                text:"Go Back"
+                on_release:
+                    app.root.current="Select"
+                    root.manager.transition.direction = "right"
+
+            Button:
+                text:"Random question"
+                on_release:
+                    root.btn()
 
 
 <SelectWindow>:
